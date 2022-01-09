@@ -28,7 +28,7 @@ namespace ProjectTracker.DAL
 
         public IQueryable<IProject> GetAll(ProjectFilterAndSort filter)
         {
-            IQueryable<Project> query = _dbc.Projects.Include(p => p.Tasks);
+            IQueryable<Project> query = _dbc.Projects.Include(p => p.Tasks).ThenInclude(p => p.Fields);
             if (filter != null)
             {
                 if (filter.Name != null)
@@ -68,7 +68,7 @@ namespace ProjectTracker.DAL
 
         public IProject GetById(int id)
         {
-            return _dbc.Projects.FirstOrDefault(p => p.Id == id);
+            return _dbc.Projects.Include(p => p.Tasks).ThenInclude(p => p.Fields).FirstOrDefault(p => p.Id == id);
         }
 
         public IProject Create(ProjectCreateModel input)
@@ -80,7 +80,7 @@ namespace ProjectTracker.DAL
                 Description = input.Description,
                 Name = input.Name,
                 Priority = input.Priority,
-                Status = input.Status, 
+                Status = input.Status,
             };
             _dbc.Projects.Add(result);
             _dbc.SaveChanges();

@@ -20,6 +20,11 @@ namespace ProjectTracker.Domain
         /// <returns>updated task</returns>
         IProjectTask Update(ProjectTaskEditModel input);
 
+        /// <summary>
+        /// Deletes Task by specified Id
+        /// </summary>
+        /// <param name="id">Tesk id</param>
+        /// <returns>returns deleted object</returns>
         IProjectTask Delete(int id);
     }
 }

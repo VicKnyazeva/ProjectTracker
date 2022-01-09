@@ -1,15 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
-using ProjectTracker.Domain.Views;
 using ProjectTracker.Domain;
+using ProjectTracker.Domain.Models;
+using ProjectTracker.Domain.Views;
 
 using System.Collections.Generic;
-using System.Linq;
-using ProjectTracker.Domain.Models;
-using Microsoft.Extensions.Options;
 
 namespace ProjectTracker.API.Controllers
 {
+    /// <summary>
+    /// Project's tasks controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class TasksController : AppControllerBase
@@ -17,6 +19,12 @@ namespace ProjectTracker.API.Controllers
         private readonly IProjectRepository _projects;
         private readonly IProjectTaskRepository _repository;
 
+        /// <summary>
+        /// Project's task controller .ctor
+        /// </summary>
+        /// <param name="apiBehaviorOptions">Options used to configure behavior for types annotated with <see cref="Microsoft.AspNetCore.Mvc.ApiControllerAttribute"/></param>
+        /// <param name="projects">Projects repository</param>
+        /// <param name="repository">Tasks repository</param>
         public TasksController(IOptions<ApiBehaviorOptions> apiBehaviorOptions, IProjectRepository projects, IProjectTaskRepository repository)
             : base(apiBehaviorOptions)
         {
@@ -24,21 +32,24 @@ namespace ProjectTracker.API.Controllers
             _repository = repository;
         }
 
-        // GET: api/<TasksController>
+        /// <summary>Gets all projects' tasks</summary>
         [HttpGet]
         public IEnumerable<IProjectTask> Get()
         {
             return _repository.GetAll().ToViews();
         }
 
-        // GET api/<TasksController>/5
+        /// <summary>Gets tasks by specified Id</summary>
+        /// <response code="204">Task not found</response>
         [HttpGet("{id}")]
         public IProjectTask GetById(int id)
         {
             return _repository.GetById(id).ToView();
         }
 
-        // POST api/<TasksController>
+        /// <summary>Creates new task</summary>
+        /// <response code="201">Returns the newly created item</response>
+        /// <response code="400">Invalid parameters</response>
         [HttpPost]
         public IActionResult Post([FromBody] ProjectTaskCreateModel input)
         {
@@ -55,7 +66,10 @@ namespace ProjectTracker.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = newTask.Id }, newTask.ToView());
         }
 
-        // PUT api/<TasksController>/5
+        /// <summary>Updates task with specified Id</summary>
+        /// <response code="400">Invalid parameters</response>
+        /// <response code="404">Task not found</response>
+        /// <response code="204">Successfully updated</response>
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] ProjectTaskEditModel input)
         {
@@ -83,7 +97,9 @@ namespace ProjectTracker.API.Controllers
             return NoContent();
         }
 
-        // DELETE api/<TasksController>/5
+        /// <summary>Deletes task with specified Id</summary>
+        /// <response code="404">Task not found</response>
+        /// <response code="204">Successfully deleted</response>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

@@ -8,39 +8,47 @@ using ProjectTracker.Domain.Views;
 using System.Collections.Generic;
 using System.Linq;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace ProjectTracker.API.Controllers
 {
-    /// <summary>Projects Controller</summary>
+    /// <summary>
+    /// Projects controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectsController : AppControllerBase
     {
         private readonly IProjectRepository _repository;
 
+        /// <summary>
+        /// Projects Controller .ctor
+        /// </summary>
+        /// <param name="apiBehaviorOptions">Options used to configure behavior for types annotated with <see cref="Microsoft.AspNetCore.Mvc.ApiControllerAttribute"/></param>
+        /// <param name="repository">Projects repository</param>
         public ProjectsController(IOptions<ApiBehaviorOptions> apiBehaviorOptions, IProjectRepository repository)
             : base(apiBehaviorOptions)
         {
             this._repository = repository;
         }
 
-        /// <summary>Gets all projects</summary>
-        // GET: api/<ProjectsController>
+        /// <summary>Gets projects with filters and sorting</summary>
+        /// <response code="400">Invalid parameters</response>
         [HttpGet]
         public IEnumerable<IProject> Get([FromQuery] ProjectFilterAndSort filter = null)
         {
             return _repository.GetAll(filter).ToViews();
         }
 
-        // GET api/<ProjectsController>/5
+        /// <summary>Gets project by specified Id</summary>
+        /// <response code="204">Project not found</response>
         [HttpGet("{id}")]
         public IProject GetById(int id)
         {
             return _repository.GetById(id).ToView();
         }
 
-        // POST api/<ProjectsController>
+        /// <summary>Creates new project</summary>
+        /// <response code="201">Returns the newly created item</response>
+        /// <response code="400">Invalid parameters</response>
         [HttpPost]
         public IActionResult Post([FromBody] ProjectCreateModel input)
         {
@@ -57,7 +65,10 @@ namespace ProjectTracker.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = newProject.Id }, newProject.ToView());
         }
 
-        // PUT api/<ProjectsController>/5
+        /// <summary>Updates project with specified Id</summary>
+        /// <response code="400">Invalid parameters</response>
+        /// <response code="404">Project not found</response>
+        /// <response code="204">Successfully updated</response>
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] ProjectEditModel input)
         {
@@ -85,7 +96,9 @@ namespace ProjectTracker.API.Controllers
             return NoContent();
         }
 
-        // DELETE api/<ProjectsController>/5
+        /// <summary>Deletes project with specified Id</summary>
+        /// <response code="404">Project not found</response>
+        /// <response code="204">Successfully deleted</response>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

@@ -1,15 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
-using ProjectTracker.Domain.Views;
 using ProjectTracker.Domain;
+using ProjectTracker.Domain.Models;
+using ProjectTracker.Domain.Views;
 
 using System.Collections.Generic;
-using System.Linq;
-using ProjectTracker.Domain.Models;
-using Microsoft.Extensions.Options;
 
 namespace ProjectTracker.API.Controllers
 {
+    /// <summary>
+    /// Task's fields controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class TaskFieldsController : AppControllerBase
@@ -17,6 +19,12 @@ namespace ProjectTracker.API.Controllers
         private readonly IProjectTaskRepository _tasks;
         private readonly IProjectTaskFieldRepository _repository;
 
+        /// <summary>
+        /// Task's fields controller .ctor
+        /// </summary>
+        /// <param name="apiBehaviorOptions">Options used to configure behavior for types annotated with <see cref="Microsoft.AspNetCore.Mvc.ApiControllerAttribute"/></param>
+        /// <param name="tasks">Repository for projects' tasks</param>
+        /// <param name="repository">Repository for tasks's fields</param>
         public TaskFieldsController(IOptions<ApiBehaviorOptions> apiBehaviorOptions, IProjectTaskRepository tasks, IProjectTaskFieldRepository repository)
             : base(apiBehaviorOptions)
         {
@@ -24,21 +32,26 @@ namespace ProjectTracker.API.Controllers
             _repository = repository;
         }
 
-        // GET: api/<TasksController>
+        /// <summary>Gets all projects' tasks' fields</summary>
         [HttpGet]
         public IEnumerable<IProjectTaskField> Get()
         {
             return _repository.GetAll().ToViews();
         }
 
-        // GET api/<TasksController>/5
+        /// <summary>Gets tasks' field by specified composite key</summary>
+        /// <param name="taskId">Task id</param>
+        /// <param name="fieldName">Field name (case sensitive)</param>
+        /// <response code="204">Field not found</response>
         [HttpGet("{taskId}/{fieldName}")]
         public IProjectTaskField GetById(int taskId, string fieldName)
         {
             return _repository.GetById(taskId, fieldName).ToView();
         }
 
-        // POST api/<TasksController>
+        /// <summary>Creates task's field with specified value</summary>
+        /// <response code="201">Returns the newly created item</response>
+        /// <response code="400">Invalid parameters</response>
         [HttpPost]
         public IActionResult Post([FromBody] ProjectTaskFieldModel input)
         {
@@ -61,18 +74,13 @@ namespace ProjectTracker.API.Controllers
             return CreatedAtAction(nameof(GetById), new { taskId = newField.TaskId, fieldName = newField.Name }, newField.ToView());
         }
 
-        // PUT api/<TasksController>/5
-        [HttpPut("{taskId}/{fieldName}")]
-        public IActionResult Put(int taskId, string fieldName, [FromBody] ProjectTaskFieldModel input)
+        /// <summary>Updates task's field</summary>
+        /// <response code="400">Invalid parameters</response>
+        /// <response code="404">Field not found</response>
+        /// <response code="204">Successfully updated</response>
+        [HttpPut]
+        public IActionResult Put([FromBody] ProjectTaskFieldModel input)
         {
-            if (taskId != input.TaskId)
-            {
-                ModelState.AddModelError(nameof(input.TaskId), "Invalid value");
-            }
-            if (fieldName != input.Name)
-            {
-                ModelState.AddModelError(nameof(input.Name), "Invalid value");
-            }
             if (_tasks.GetById(input.TaskId) == null)
             {
                 ModelState.AddModelError(nameof(input.TaskId),
@@ -90,7 +98,9 @@ namespace ProjectTracker.API.Controllers
             return NoContent();
         }
 
-        // DELETE api/<TasksController>/5
+        /// <summary>Deletes task's field by specified composite key</summary>
+        /// <response code="404">Field not found</response>
+        /// <response code="204">Successfully deleted</response>
         [HttpDelete("{taskId}/{fieldName}")]
         public IActionResult Delete(int taskId, string fieldName)
         {

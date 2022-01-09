@@ -2,8 +2,6 @@
 
 namespace ProjectTracker.Domain
 {
-    //WIll be a plus to have an ability to filter and sort projects with various methods
-    //(start at, end at, range, exact value, etc.) and by various fields (start date, priority, etc.)
     public class ProjectFilterAndSort
     {
         public string Name { get; set; }

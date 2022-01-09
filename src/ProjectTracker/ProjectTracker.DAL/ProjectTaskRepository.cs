@@ -27,7 +27,7 @@ namespace ProjectTracker.DAL
 
         public IProjectTask GetById(int id)
         {
-            return _dbc.ProjectTasks.FirstOrDefault(t => t.Id == id);
+            return _dbc.ProjectTasks.Include(t=>t.Fields).FirstOrDefault(t => t.Id == id);
         }
 
         public IProjectTask Create(ProjectTaskCreateModel input)
