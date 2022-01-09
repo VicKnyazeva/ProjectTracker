@@ -5,7 +5,7 @@ using System.Linq;
 namespace ProjectTracker.Domain
 {
     /// <summary>
-    /// Project repository Interface
+    /// Project repository interface
     /// </summary>
     public interface IProjectRepository
     {

@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjectTracker.Domain
+﻿namespace ProjectTracker.Domain
 {
+    /// <summary>
+    /// Enum for project's statuses
+    /// </summary>
     public enum ProjectStatus
     {
+        /// <summary>
+        /// NotStarted
+        /// </summary>
         NotStarted,
+        /// <summary>
+        /// Active
+        /// </summary>
         Active,
+        /// <summary>
+        /// Completed
+        /// </summary>
         Completed
     }
 }

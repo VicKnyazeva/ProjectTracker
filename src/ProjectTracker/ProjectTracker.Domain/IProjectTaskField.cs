@@ -1,18 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjectTracker.Domain
+﻿namespace ProjectTracker.Domain
 {
+    /// <summary>
+    /// IProjectTaskField interface represents a project's task's field.
+    /// </summary>
     public interface IProjectTaskField : IEntity
     {
+        /// <summary>
+        /// Task identifier
+        /// </summary>
         public int TaskId { get; set; }
 
+        /// <summary>
+        /// Field name
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Field vaue
+        /// </summary>
         public string Value { get; set; }
     }
 }

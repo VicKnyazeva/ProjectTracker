@@ -5,10 +5,25 @@
     /// </summary>
     public enum ProjectSort
     {
+        /// <summary>
+        /// Name
+        /// </summary>
         Name,
-        Status, 
-        Created, 
+        /// <summary>
+        /// Status
+        /// </summary>
+        Status,
+        /// <summary>
+        /// Start date
+        /// </summary>
+        Started, 
+        /// <summary>
+        /// Completion date
+        /// </summary>
         Completed, 
+        /// <summary>
+        /// 
+        /// </summary>
         Priority
     }
 }

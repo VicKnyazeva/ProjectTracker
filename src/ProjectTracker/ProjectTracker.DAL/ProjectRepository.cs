@@ -68,7 +68,7 @@ namespace ProjectTracker.DAL
                     case ProjectSort.Priority:
                         query = OrderBy(query, filter.SortOrder, p => p.Priority);
                         break;
-                    case ProjectSort.Created:
+                    case ProjectSort.Started:
                         query = OrderBy(query, filter.SortOrder, p => p.Started);
                         break;
                     case ProjectSort.Completed:
