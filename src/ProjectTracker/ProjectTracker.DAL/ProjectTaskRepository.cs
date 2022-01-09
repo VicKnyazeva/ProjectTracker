@@ -4,32 +4,50 @@ using ProjectTracker.DAL.Models;
 using ProjectTracker.Domain;
 using ProjectTracker.Domain.Models;
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectTracker.DAL
 {
+    /// <summary>
+    /// A ProjectTaskRepository instance represents a repository of project' tasks entities.
+    /// </summary>
     public class ProjectTaskRepository : IProjectTaskRepository
     {
         private readonly ProjectTrackerDbContext _dbc;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectTaskRepository"/> class
+        /// </summary>
+        /// <param name="dbc">Database context</param>
         public ProjectTaskRepository(ProjectTrackerDbContext dbc)
         {
             _dbc = dbc;
         }
 
+        /// <summary>
+        /// Gets all projects' tasks
+        /// </summary>
+        /// <returns>all tasks with their fields</returns>
         public IQueryable<IProjectTask> GetAll()
         {
             return _dbc.ProjectTasks.Include(t => t.Fields);
         }
 
+        /// <summary>
+        /// Gets task by specified Id
+        /// </summary>
+        /// <param name="id">Task id</param>
+        /// <returns>task with its fields</returns>
         public IProjectTask GetById(int id)
         {
             return _dbc.ProjectTasks.Include(t=>t.Fields).FirstOrDefault(t => t.Id == id);
         }
 
+        /// <summary>
+        /// Creates new task and stores it to database
+        /// </summary>
+        /// <param name="input">New data for task</param>
+        /// <returns>created task</returns>
         public IProjectTask Create(ProjectTaskCreateModel input)
         {
             ProjectTask result = new ProjectTask()
@@ -45,6 +63,11 @@ namespace ProjectTracker.DAL
             return result;
         }
 
+        /// <summary>
+        /// Updates existing task and stores it 
+        /// </summary>
+        /// <param name="input">Updated data for task</param>
+        /// <returns>updated task</returns>
         public IProjectTask Update(ProjectTaskEditModel input)
         {
             var entity = _dbc.ProjectTasks.FirstOrDefault(p => p.Id == input.Id);
@@ -61,6 +84,11 @@ namespace ProjectTracker.DAL
             return entity;
         }
 
+        /// <summary>
+        /// Deletes task by specified task id
+        /// </summary>
+        /// <param name="id">Task id</param>
+        /// <returns>deleted object</returns>
         public IProjectTask Delete(int id)
         {
             var entity = _dbc.ProjectTasks.FirstOrDefault(p => p.Id == id);

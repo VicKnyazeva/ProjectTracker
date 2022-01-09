@@ -39,7 +39,7 @@ namespace ProjectTracker.API.Controllers
             return _repository.GetAll().ToViews();
         }
 
-        /// <summary>Gets tasks' field by specified composite key</summary>
+        /// <summary>Gets task's field by specified composite key</summary>
         /// <param name="taskId">Task id</param>
         /// <param name="fieldName">Field name (case sensitive)</param>
         /// <response code="204">Field not found</response>

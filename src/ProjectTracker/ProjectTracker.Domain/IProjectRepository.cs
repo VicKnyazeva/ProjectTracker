@@ -1,15 +1,11 @@
 ﻿using ProjectTracker.Domain.Models;
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectTracker.Domain
 {
     /// <summary>
-    /// Interface for Project repository
+    /// Project repository Interface
     /// </summary>
     public interface IProjectRepository
     {

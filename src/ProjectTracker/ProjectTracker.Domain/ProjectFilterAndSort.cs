@@ -8,7 +8,7 @@ namespace ProjectTracker.Domain
 
         public ProjectStatus? Status { get; set; }
 
-        public DateTime? Created { get; set; }
+        public DateTime? Started { get; set; }
 
         public DateTime? Completed { get; set; }
 

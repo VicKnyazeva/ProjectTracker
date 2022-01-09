@@ -42,8 +42,8 @@ namespace ProjectTracker.API
 
                         var projects = new List<Project>
                         {
-                            new Project { Name = "Project #1", Description = "desc #1", Created = new System.DateTime(2022,01,01), Status = Domain.ProjectStatus.Active },
-                            new Project { Name = "Project #2", Description = "desc #2", Created = new System.DateTime(2022,01,05), Status = Domain.ProjectStatus.NotStarted }
+                            new Project { Name = "Project #1", Description = "desc #1", Started = new System.DateTime(2022,01,01), Status = Domain.ProjectStatus.Active },
+                            new Project { Name = "Project #2", Description = "desc #2", Started = new System.DateTime(2022,01,05), Status = Domain.ProjectStatus.NotStarted }
                         };
                         dbc.Projects.AddRange(projects);
 

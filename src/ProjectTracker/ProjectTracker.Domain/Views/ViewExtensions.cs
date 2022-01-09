@@ -14,7 +14,7 @@ namespace ProjectTracker.Domain.Views
             {
                 Id = source.Id,
                 Status = source.Status,
-                Created = source.Created,
+                Started = source.Started,
                 Completed = source.Completed,
                 Description = source.Description,
                 Name = source.Name,

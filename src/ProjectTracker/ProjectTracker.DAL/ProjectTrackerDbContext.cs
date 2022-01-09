@@ -2,10 +2,11 @@
 
 using ProjectTracker.DAL.Models;
 
-using System.Collections.Generic;
-
 namespace ProjectTracker.DAL
 {
+    /// <summary>
+    /// Implements database context
+    /// </summary>
     public class ProjectTrackerDbContext : DbContext
     {
         public ProjectTrackerDbContext()

@@ -9,7 +9,7 @@ using ProjectTracker.DAL;
 namespace ProjectTracker.DAL.Migrations
 {
     [DbContext(typeof(ProjectTrackerDbContext))]
-    [Migration("20220108153155_InitialCreate")]
+    [Migration("20220109200333_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,6 @@ namespace ProjectTracker.DAL.Migrations
                     b.Property<DateTime?>("Completed")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("Created")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
@@ -39,32 +36,15 @@ namespace ProjectTracker.DAL.Migrations
                     b.Property<int>("Priority")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime?>("Started")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Created = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "desc #1",
-                            Name = "Project #1",
-                            Priority = 0,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Created = new DateTime(2022, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "desc #2",
-                            Name = "Project #2",
-                            Priority = 0,
-                            Status = 0
-                        });
                 });
 
             modelBuilder.Entity("ProjectTracker.DAL.Models.ProjectTask", b =>
@@ -93,35 +73,6 @@ namespace ProjectTracker.DAL.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("ProjectTasks");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "task desc #1.1",
-                            Name = "Task #1.1",
-                            Priority = 0,
-                            ProjectId = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "task desc #1.2",
-                            Name = "Task #1.2",
-                            Priority = 0,
-                            ProjectId = 1,
-                            Status = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "task desc #2.1",
-                            Name = "Task #2.1",
-                            Priority = 0,
-                            ProjectId = 3,
-                            Status = 0
-                        });
                 });
 
             modelBuilder.Entity("ProjectTracker.DAL.Models.ProjectTaskField", b =>
@@ -138,26 +89,6 @@ namespace ProjectTracker.DAL.Migrations
                     b.HasKey("TaskId", "Name");
 
                     b.ToTable("ProjectTaskFields");
-
-                    b.HasData(
-                        new
-                        {
-                            TaskId = 2,
-                            Name = "FIELD1",
-                            Value = "f 1"
-                        },
-                        new
-                        {
-                            TaskId = 2,
-                            Name = "Field1",
-                            Value = "f 1 low"
-                        },
-                        new
-                        {
-                            TaskId = 2,
-                            Name = "FIELD #2",
-                            Value = "f 1"
-                        });
                 });
 
             modelBuilder.Entity("ProjectTracker.DAL.Models.ProjectTask", b =>

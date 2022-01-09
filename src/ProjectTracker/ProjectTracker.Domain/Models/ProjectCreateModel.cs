@@ -8,7 +8,7 @@ namespace ProjectTracker.Domain.Models
         [Required, StringLength(100, MinimumLength = 1)]
         public string Name { get; set; }
 
-        public DateTime? Created { get; set; }
+        public DateTime? Started { get; set; }
 
         public DateTime? Completed { get; set; }
 
