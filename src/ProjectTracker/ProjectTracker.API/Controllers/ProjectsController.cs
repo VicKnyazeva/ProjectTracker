@@ -11,7 +11,7 @@ using System.Linq;
 namespace ProjectTracker.API.Controllers
 {
     /// <summary>
-    /// Projects controller
+    /// A projects controller
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -20,7 +20,7 @@ namespace ProjectTracker.API.Controllers
         private readonly IProjectRepository _repository;
 
         /// <summary>
-        /// Projects Controller .ctor
+        /// Initializes a new instance of the <see cref="ProjectsController"/> class
         /// </summary>
         /// <param name="apiBehaviorOptions">Options used to configure behavior for types annotated with <see cref="Microsoft.AspNetCore.Mvc.ApiControllerAttribute"/></param>
         /// <param name="repository">Projects repository</param>

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ProjectTracker.DAL.Models
 {
     /// <summary>
-    /// A ProjectTaskField instance represents a project's task's field.
+    /// A ProjectTaskField instance represents a project's task's field entity.
     /// </summary>
     public class ProjectTaskField : IProjectTaskField
     {

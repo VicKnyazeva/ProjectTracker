@@ -20,7 +20,7 @@ namespace ProjectTracker.API.Controllers
         private readonly IProjectTaskFieldRepository _repository;
 
         /// <summary>
-        /// Task's fields controller .ctor
+        /// Initializes a new instance of the <see cref="TaskFieldsController"/> class
         /// </summary>
         /// <param name="apiBehaviorOptions">Options used to configure behavior for types annotated with <see cref="Microsoft.AspNetCore.Mvc.ApiControllerAttribute"/></param>
         /// <param name="tasks">Repository for projects' tasks</param>

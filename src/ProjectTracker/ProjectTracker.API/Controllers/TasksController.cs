@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace ProjectTracker.API.Controllers
 {
     /// <summary>
-    /// Project's tasks controller
+    /// A project's tasks controller
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -20,7 +20,7 @@ namespace ProjectTracker.API.Controllers
         private readonly IProjectTaskRepository _repository;
 
         /// <summary>
-        /// Project's task controller .ctor
+        /// Initializes a new instance of the <see cref="TasksController"/> class
         /// </summary>
         /// <param name="apiBehaviorOptions">Options used to configure behavior for types annotated with <see cref="Microsoft.AspNetCore.Mvc.ApiControllerAttribute"/></param>
         /// <param name="projects">Projects repository</param>

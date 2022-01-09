@@ -3,7 +3,7 @@
 namespace ProjectTracker.Domain.Models
 {
     /// <summary>
-    /// Represents model for a new Project's Task's Field
+    /// Represents model for a new project's task's field
     /// </summary>
     public class ProjectTaskFieldModel
     {

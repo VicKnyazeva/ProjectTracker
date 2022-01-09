@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace ProjectTracker.Domain
 {
     /// <summary>
-    /// IProject interface represents a project.
+    /// IProject interface represents a project
     /// </summary>
     public interface IProject : IEntity
     {

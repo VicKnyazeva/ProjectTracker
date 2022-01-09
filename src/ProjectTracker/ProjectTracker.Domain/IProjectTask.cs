@@ -3,7 +3,7 @@
 namespace ProjectTracker.Domain
 {
     /// <summary>
-    /// IProjectTask interface represents a project's task.
+    /// IProjectTask interface represents a project's task
     /// </summary>
     public interface IProjectTask : IEntity
     {

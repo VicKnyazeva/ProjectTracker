@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 namespace ProjectTracker.DAL
 {
     /// <summary>
-    /// A ProjectRepository instance represents a repository of project entities.
+    /// A ProjectRepository instance represents a repository of project entities
     /// </summary>
     public class ProjectRepository : IProjectRepository
     {

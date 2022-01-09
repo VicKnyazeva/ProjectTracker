@@ -1,7 +1,7 @@
 ﻿namespace ProjectTracker.Domain.Models
 {
     /// <summary>
-    /// Represents model for an updated Task
+    /// Represents model for an updated task
     /// </summary>
     public class ProjectTaskEditModel : ProjectTaskCreateModel
     {

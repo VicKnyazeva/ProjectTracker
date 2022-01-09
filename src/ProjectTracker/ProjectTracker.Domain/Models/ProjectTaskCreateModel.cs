@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace ProjectTracker.Domain.Models
 {
     /// <summary>
-    /// Represents model for new Project Task
+    /// Represents model for a new project task
     /// </summary>
     public class ProjectTaskCreateModel
     {

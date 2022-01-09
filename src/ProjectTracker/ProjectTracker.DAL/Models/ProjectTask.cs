@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace ProjectTracker.DAL.Models
 {
     /// <summary>
-    /// A ProjectTask instance represents a project task.
+    /// A ProjectTask instance represents a project task entity.
     /// </summary>
     public class ProjectTask : IProjectTask
     {

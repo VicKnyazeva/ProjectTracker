@@ -3,7 +3,7 @@
 namespace ProjectTracker.Domain
 {
     /// <summary>
-    /// A ProjectFilterAndSort instance allow to apply filter and sort by project fields
+    /// A ProjectFilterAndSort instance allows to apply filter and sort by project fields
     /// </summary>
     public class ProjectFilterAndSort
     {

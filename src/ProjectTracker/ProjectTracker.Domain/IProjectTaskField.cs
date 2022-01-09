@@ -1,7 +1,7 @@
 ﻿namespace ProjectTracker.Domain
 {
     /// <summary>
-    /// IProjectTaskField interface represents a project's task's field.
+    /// IProjectTaskField interface represents a project's task's field
     /// </summary>
     public interface IProjectTaskField : IEntity
     {

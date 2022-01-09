@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace ProjectTracker.Domain
 {
-
     /// <summary>
     /// Project's task's field repository interface
     /// </summary>
